@@ -1,0 +1,230 @@
+/* General Styling */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #ffffff;
+    color: #333333;
+}
+
+
+/* Navigation Bar */
+
+.navbar {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #eeeeee;
+    padding: 5px 0;
+}
+
+.nav-container {
+    width: 75%;
+    max-width: 1000px;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand {
+    color: #333333;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.add-button {
+    display: inline-block;
+    background-color: #0d6efd;
+    color: #ffffff;
+    text-decoration: none;
+
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 11px;
+}
+
+.add-button:hover {
+    background-color: #0b5ed7;
+}
+
+
+/* Main Container */
+
+.container {
+    width: 75%;
+    max-width: 1000px;
+    margin: 18px auto;
+}
+
+h1 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0 0 12px;
+}
+
+
+/* Task Table */
+
+.table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.task-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.task-table th {
+    padding: 8px 6px;
+    font-weight: 600;
+    font-size: 11px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.task-table td {
+    padding: 6px;
+    font-size: 11px;
+    vertical-align: middle;
+    overflow-wrap: anywhere;
+}
+
+.task-table tbody tr {
+    border-bottom: 1px solid #eeeeee;
+}
+
+.task-table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+.task-table tbody tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+
+/* Completed and Pending Tasks */
+
+.completed-row td:first-child {
+    color: #555555;
+}
+
+.pending-row td:first-child {
+    color: #333333;
+}
+
+.status-form {
+    margin: 0;
+}
+
+.status-button {
+    width: 20px;
+    height: 20px;
+
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    border: none;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.status-button.done {
+    background-color: #198754;
+    color: #ffffff;
+}
+
+.status-button.pending {
+    background-color: #ffc107;
+    color: #333333;
+}
+
+.status-button:hover {
+    opacity: 0.8;
+}
+
+
+/* Action Buttons */
+
+.action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.action-buttons form {
+    margin: 0;
+}
+
+.edit-button,
+.delete-button {
+    display: inline-block;
+    border: none;
+    border-radius: 3px;
+
+    padding: 5px 7px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #ffc107;
+    color: #212529;
+}
+
+.edit-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: #ffffff;
+}
+
+.delete-button:hover {
+    background-color: #bb2d3b;
+}
+
+
+/* Empty State */
+
+.empty-state {
+    padding: 35px 15px;
+    text-align: center;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+}
+
+.empty-state h2 {
+    font-size: 17px;
+}
+
+.empty-state p {
+    color: #666666;
+    margin-bottom: 20px;
+}
+
+
+/* Mobile Layout */
+
+@media (max-width: 700px) {
+
+    .nav-container,
+    .container {
+        width: 94%;
+    }
+
+    .task-table {
+        min-width: 600px;
+    }
+}

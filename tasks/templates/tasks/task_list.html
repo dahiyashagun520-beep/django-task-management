@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>All Tasks</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/task_list.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="{% url 'home' %}" class="brand">
+                Todo App
+            </a>
+
+            <a href="{% url 'add_task' %}" class="add-button">
+                Add Task
+            </a>
+
+        </div>
+    </nav>
+
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <h1>All Tasks</h1>
+
+        {% if tasks %}
+
+            <div class="table-wrapper">
+
+                <table class="task-table">
+
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Description</th>
+                            <th>Done</th>
+                            <th>Created</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        {% for task in tasks %}
+
+                            <tr class="{% if task.completed %}completed-row{% else %}pending-row{% endif %}">
+
+                                <td>{{ task.title }}</td>
+
+                                <td>{{ task.description|default:"—" }}</td>
+
+                                <td>
+                                    <form method="POST"
+                                          action="{% url 'toggle_task' task.id %}"
+                                          class="status-form">
+
+                                        {% csrf_token %}
+
+                                        <button type="submit"
+                                                class="status-button {% if task.completed %}done{% else %}pending{% endif %}"
+                                                title="Click to change task status">
+
+                                            {% if task.completed %}
+                                                ✓
+                                            {% else %}
+                                                ○
+                                            {% endif %}
+
+                                        </button>
+
+                                    </form>
+                                </td>
+
+                                <td>{{ task.created_at|date:"Y-m-d H:i" }}</td>
+
+                                <td>
+                                    <div class="action-buttons">
+
+                                        <a href="{% url 'edit_task' task.id %}"
+                                           class="edit-button">
+                                            Edit
+                                        </a>
+
+                                        <form method="POST"
+                                              action="{% url 'delete_task' task.id %}"
+                                              onsubmit="return confirm('Are you sure you want to delete this task?');">
+
+                                            {% csrf_token %}
+
+                                            <button type="submit" class="delete-button">
+                                                Delete
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="empty-state">
+                <h2>No tasks available</h2>
+                <p>You haven't added any tasks yet.</p>
+
+                <a href="{% url 'add_task' %}" class="add-button">
+                    Create Your First Task
+                </a>
+            </div>
+
+        {% endif %}
+
+    </main>
+
+</body>
+
+</html>

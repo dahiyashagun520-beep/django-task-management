@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Task</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'tasks/add_task.css' %}">
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+
+            <a href="{% url 'home' %}" class="brand">
+                Todo App
+            </a>
+
+            <a href="{% url 'add_task' %}" class="add-button">
+                Add Task
+            </a>
+
+        </div>
+    </nav>
+
+    <!-- Add Task Form -->
+    <main class="container">
+
+        <h1>Add Task</h1>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Title -->
+            <div class="form-group">
+                <label for="{{ form.title.id_for_label }}">Title</label>
+                {{ form.title }}
+
+                {% if form.title.errors %}
+                    <div class="error-message">
+                        {{ form.title.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Description -->
+            <div class="form-group">
+                <label for="{{ form.description.id_for_label }}">
+                    Description
+                </label>
+
+                {{ form.description }}
+
+                {% if form.description.errors %}
+                    <div class="error-message">
+                        {{ form.description.errors }}
+                    </div>
+                {% endif %}
+            </div>
+
+            <!-- Buttons -->
+            <div class="form-actions">
+
+                <button type="submit" class="save-button">
+                    Save
+                </button>
+
+                <a href="{% url 'home' %}" class="cancel-button">
+                    Cancel
+                </a>
+
+            </div>
+
+        </form>
+
+    </main>
+
+
+</body>
+
+
+</html>
+
+
